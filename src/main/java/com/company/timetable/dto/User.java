@@ -3,7 +3,7 @@ package com.company.timetable.dto;
 public class User {
 
     private Long id;
-    private Long telegramChatId;
+    private Long telegramId;
     private Long countryId;
     private Long cityId;
     private Long eduTypeId;
