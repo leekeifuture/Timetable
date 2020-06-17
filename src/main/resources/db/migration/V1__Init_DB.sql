@@ -11,3 +11,8 @@ CREATE TABLE usr (
     group_id INT,
     admin_role_id INT NOT NULL
 );
+
+CREATE TABLE edu_type (
+    id INT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL
+);

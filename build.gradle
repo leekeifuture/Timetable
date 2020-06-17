@@ -34,6 +34,10 @@ dependencies {
     // Flyway
     compile 'org.flywaydb:flyway-core'
 
+    // Swagger
+    compile 'io.springfox:springfox-swagger2:2.9.2'
+    compile 'io.springfox:springfox-swagger-ui:2.9.2'
+
     // Lombok
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
