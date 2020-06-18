@@ -1,8 +1,19 @@
 package com.company.timetable.dto;
 
+import com.company.timetable.dto.education.City;
+import com.company.timetable.dto.education.ClassLetter;
+import com.company.timetable.dto.education.Country;
+import com.company.timetable.dto.education.Education;
+import com.company.timetable.dto.education.EducationType;
+import com.company.timetable.dto.education.Faculty;
+import com.company.timetable.dto.education.Group;
+import com.company.timetable.dto.education.SchoolClass;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -19,22 +30,36 @@ public class User {
     private Long id;
     @ApiModelProperty(notes = "Telegram ID of user", position = 2)
     private Long telegramId;
-    @ApiModelProperty(notes = "ID of selected country", position = 3)
-    private Long countryId;
-    @ApiModelProperty(notes = "ID of selected city", position = 4)
-    private Long cityId;
-    @ApiModelProperty(notes = "ID of selected education type", position = 5)
-    private Long eduTypeId;
-    @ApiModelProperty(notes = "ID of selected education", position = 6)
-    private Long eduId;
-    @ApiModelProperty(notes = "ID of selected school class", position = 7)
-    private Long schoolClassId;
-    @ApiModelProperty(notes = "ID of selected class letter", position = 8)
-    private Long classLetterId;
-    @ApiModelProperty(notes = "ID of selected faculty", position = 9)
-    private Long facultyId;
-    @ApiModelProperty(notes = "ID of selected group", position = 10)
-    private Long groupId;
-    @ApiModelProperty(notes = "Admin role ID", position = 11)
-    private Long adminRoleId;
+    @ManyToOne
+    @JoinColumn(name = "country")
+    @ApiModelProperty(notes = "Selected country", position = 3)
+    private Country country;
+    @ManyToOne
+    @JoinColumn(name = "city")
+    @ApiModelProperty(notes = "Selected city", position = 4)
+    private City city;
+    @ManyToOne
+    @JoinColumn(name = "education_type")
+    @ApiModelProperty(notes = "Selected education type", position = 5)
+    private EducationType educationType;
+    @ManyToOne
+    @JoinColumn(name = "education")
+    @ApiModelProperty(notes = "Selected education", position = 6)
+    private Education education;
+    @ManyToOne
+    @JoinColumn(name = "school_class")
+    @ApiModelProperty(notes = "Selected school class", position = 7)
+    private SchoolClass schoolClass;
+    @ManyToOne
+    @JoinColumn(name = "class_letter")
+    @ApiModelProperty(notes = "Selected class letter", position = 8)
+    private ClassLetter classLetter;
+    @ManyToOne
+    @JoinColumn(name = "faculty")
+    @ApiModelProperty(notes = "Selected faculty", position = 9)
+    private Faculty faculty;
+    @ManyToOne
+    @JoinColumn(name = "group")
+    @ApiModelProperty(notes = "Selected group", position = 10)
+    private Group group;
 }

@@ -41,6 +41,9 @@ dependencies {
     // Lombok
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
+
+    // Javax validation
+    compile 'javax.validation:validation-api:2.0.1.Final'
 }
 
 test {
