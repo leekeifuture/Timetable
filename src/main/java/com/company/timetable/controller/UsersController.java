@@ -1,13 +1,14 @@
 package com.company.timetable.controller;
 
-import com.company.timetable.dto.User;
-import com.company.timetable.service.UserService;
+import com.company.timetable.dto.education.Country;
+import com.company.timetable.service.VkService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -18,11 +19,12 @@ import io.swagger.annotations.ApiOperation;
 public class UsersController {
 
     @Autowired
-    private UserService userService;
+    private VkService vkService;
 
-    @PostMapping("/signUp")
-    @ApiOperation(value = "Sign up user")
-    void signUpUser(@RequestBody User user) {
-        userService.signUpUser(user);
+    @GetMapping("/test")
+    @ApiOperation(value = "Test controller")
+    void signUpUser() {
+        List<Country> result = vkService.getCountries();
+        System.out.println(result);
     }
 }

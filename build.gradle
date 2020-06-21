@@ -38,6 +38,9 @@ dependencies {
     compile 'io.springfox:springfox-swagger2:2.9.2'
     compile 'io.springfox:springfox-swagger-ui:2.9.2'
 
+    // VK
+    compile 'com.vk.api:sdk:0.5.12'
+
     // Lombok
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
