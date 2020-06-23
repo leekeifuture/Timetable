@@ -48,12 +48,6 @@ public class VkService {
         return new VkCredentials(vkDatabase, actor);
     }
 
-    public void updateDatabaseFromVk() {
-        List<Country> countries = getCountries();
-        List<City> cities = getCities(3);
-        List<Education> educations = getEducations(281);
-    }
-
     public List<Country> getCountries() {
         VkCredentials vkCredentials = getVkCredentials();
         List<Country> countries = new ArrayList<>();
