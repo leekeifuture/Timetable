@@ -1,5 +1,6 @@
 package com.company.timetable.service;
 
+import com.company.timetable.dto.education.City;
 import com.company.timetable.dto.education.Country;
 import com.company.timetable.dto.vk.VkCredentials;
 import com.google.gson.Gson;
@@ -12,6 +13,7 @@ import com.vk.api.sdk.exceptions.ApiException;
 import com.vk.api.sdk.exceptions.ClientException;
 import com.vk.api.sdk.httpclient.HttpTransportClient;
 import com.vk.api.sdk.objects.ServiceClientCredentialsFlowResponse;
+import com.vk.api.sdk.objects.database.responses.GetCitiesResponse;
 import com.vk.api.sdk.objects.database.responses.GetCountriesResponse;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -51,6 +53,7 @@ public class VkService {
 
     public void updateDatabaseFromVk() {
         List<Country> countries = getCountries();
+        List<City> cities = getCities(3);
     }
 
     public List<Country> getCountries() {
@@ -81,5 +84,35 @@ public class VkService {
         }
 
         return countries;
+    }
+
+    public List<City> getCities(Integer countryId) {
+        VkCredentials vkCredentials = getVkCredentials();
+        List<City> cities = new ArrayList<>();
+
+        try {
+            int offset = 0;
+            final Integer MAX_COUNT = 1000;
+            Integer citiesSize;
+            do {
+                GetCitiesResponse citiesResponse = vkCredentials.getVkDatabase()
+                        .getCities(vkCredentials.getActor(), countryId)
+                        .lang(LANG)
+                        .needAll(true)
+                        .count(MAX_COUNT)
+                        .offset(offset)
+                        .execute();
+                citiesSize = citiesResponse.getItems().size();
+                offset += MAX_COUNT;
+                citiesResponse.getItems().forEach(city ->
+                        cities.add(
+                                new City(city.getId(), city.getTitle())
+                        ));
+            } while (citiesSize > 0);
+        } catch (ApiException | ClientException e) {
+            e.printStackTrace();
+        }
+
+        return cities;
     }
 }
