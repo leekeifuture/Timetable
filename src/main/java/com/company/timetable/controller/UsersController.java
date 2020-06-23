@@ -1,6 +1,6 @@
 package com.company.timetable.controller;
 
-import com.company.timetable.dto.education.Education;
+import com.company.timetable.dto.education.Faculty;
 import com.company.timetable.service.VkService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ public class UsersController {
     @GetMapping("/test")
     @ApiOperation(value = "Test controller")
     void signUpUser() {
-        List<Education> result = vkService.getEducations(281);
+        List<Faculty> result = vkService.getFaculties(2164);
         System.out.println(result);
     }
 }

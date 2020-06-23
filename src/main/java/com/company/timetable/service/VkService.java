@@ -3,6 +3,7 @@ package com.company.timetable.service;
 import com.company.timetable.dto.education.City;
 import com.company.timetable.dto.education.Country;
 import com.company.timetable.dto.education.Education;
+import com.company.timetable.dto.education.Faculty;
 import com.company.timetable.dto.vk.VkCredentials;
 import com.google.gson.Gson;
 import com.vk.api.sdk.actions.Database;
@@ -15,6 +16,7 @@ import com.vk.api.sdk.exceptions.ClientException;
 import com.vk.api.sdk.httpclient.HttpTransportClient;
 import com.vk.api.sdk.objects.database.responses.GetCitiesResponse;
 import com.vk.api.sdk.objects.database.responses.GetCountriesResponse;
+import com.vk.api.sdk.objects.database.responses.GetFacultiesResponse;
 import com.vk.api.sdk.objects.database.responses.GetSchoolsResponse;
 import com.vk.api.sdk.objects.database.responses.GetUniversitiesResponse;
 
@@ -155,5 +157,34 @@ public class VkService {
         }
 
         return educations;
+    }
+
+    public List<Faculty> getFaculties(Integer universityId) {
+        VkCredentials vkCredentials = getVkCredentials();
+        List<Faculty> faculties = new ArrayList<>();
+
+        try {
+            int offset = 0;
+            final Integer MAX_COUNT = 10000;
+            Integer facultiesSize;
+            do {
+                GetFacultiesResponse facultiesResponse = vkCredentials.getVkDatabase()
+                        .getFaculties(vkCredentials.getActor(), universityId)
+                        .lang(LANG)
+                        .count(MAX_COUNT)
+                        .offset(offset)
+                        .execute();
+                facultiesResponse.getItems().forEach(country ->
+                        faculties.add(
+                                new Faculty(country.getId(), country.getTitle())
+                        ));
+                facultiesSize = facultiesResponse.getItems().size();
+                offset += MAX_COUNT;
+            } while (facultiesSize > 0);
+        } catch (ApiException | ClientException e) {
+            e.printStackTrace();
+        }
+
+        return faculties;
     }
 }
