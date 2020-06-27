@@ -17,19 +17,23 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "usr")
 public class User {
 
     @Id
     @GeneratedValue
     @ApiModelProperty(notes = "Generated DB ID of user", position = 1)
-    private Long id;
+    private Integer id;
     @ApiModelProperty(notes = "Telegram ID of user", position = 2)
-    private Long telegramId;
+    private Integer telegramId;
     @ManyToOne
     @JoinColumn(name = "country")
     @ApiModelProperty(notes = "Selected country", position = 3)
