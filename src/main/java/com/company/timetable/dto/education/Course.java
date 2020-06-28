@@ -13,16 +13,13 @@ import lombok.NoArgsConstructor;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class Country {
+public class Course {
 
     @Id
-    @ApiModelProperty(notes = "ID of country", position = 1)
+    @ApiModelProperty(notes = "ID of course", position = 1)
     private Integer id;
 
     @NotBlank
-    @ApiModelProperty(notes = "Title of country", position = 2)
-    private String title;
-
-    @ApiModelProperty(notes = "Is country allowed for using", position = 3)
-    private Boolean isAllowed;
+    @ApiModelProperty(notes = "Title of course", position = 2)
+    private Integer title;
 }

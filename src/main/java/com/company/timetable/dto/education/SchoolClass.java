@@ -1,7 +1,6 @@
 package com.company.timetable.dto.education;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 
@@ -17,11 +16,10 @@ import lombok.NoArgsConstructor;
 public class SchoolClass {
 
     @Id
-    @GeneratedValue
     @ApiModelProperty(notes = "ID of school class", position = 1)
     private Integer id;
 
     @NotBlank
     @ApiModelProperty(notes = "Title of school class", position = 2)
-    private String title;
+    private Integer title;
 }

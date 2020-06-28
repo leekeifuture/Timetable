@@ -35,35 +35,35 @@ public class User {
     @ApiModelProperty(notes = "Telegram ID of user", position = 2)
     private Integer telegramId;
     @ManyToOne
-    @JoinColumn(name = "country")
+    @JoinColumn(name = "country_id")
     @ApiModelProperty(notes = "Selected country", position = 3)
     private Country country;
     @ManyToOne
-    @JoinColumn(name = "city")
+    @JoinColumn(name = "city_id")
     @ApiModelProperty(notes = "Selected city", position = 4)
     private City city;
     @ManyToOne
-    @JoinColumn(name = "education_type")
+    @JoinColumn(name = "education_type_id")
     @ApiModelProperty(notes = "Selected education type", position = 5)
     private EducationType educationType;
     @ManyToOne
-    @JoinColumn(name = "education")
+    @JoinColumn(name = "education_id")
     @ApiModelProperty(notes = "Selected education", position = 6)
     private Education education;
     @ManyToOne
-    @JoinColumn(name = "school_class")
+    @JoinColumn(name = "school_class_id")
     @ApiModelProperty(notes = "Selected school class", position = 7)
     private SchoolClass schoolClass;
     @ManyToOne
-    @JoinColumn(name = "class_letter")
+    @JoinColumn(name = "class_letter_id")
     @ApiModelProperty(notes = "Selected class letter", position = 8)
     private ClassLetter classLetter;
     @ManyToOne
-    @JoinColumn(name = "faculty")
+    @JoinColumn(name = "faculty_id")
     @ApiModelProperty(notes = "Selected faculty", position = 9)
     private Faculty faculty;
     @ManyToOne
-    @JoinColumn(name = "group")
+    @JoinColumn(name = "group_id")
     @ApiModelProperty(notes = "Selected group", position = 10)
     private Group group;
 }
