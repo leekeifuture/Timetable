@@ -8,9 +8,9 @@ CREATE TABLE country (
 
 CREATE TABLE city (
     id         INT PRIMARY KEY,
-    country_id INT NOT NULL REFERENCES country(id),
     title      VARCHAR(255) NOT NULL,
-    is_allowed BOOLEAN DEFAULT TRUE
+    is_allowed BOOLEAN DEFAULT TRUE,
+    country_id INT NOT NULL REFERENCES country(id)
 );
 
 CREATE TABLE education_type (
@@ -20,10 +20,10 @@ CREATE TABLE education_type (
 
 CREATE TABLE education (
     id                INT PRIMARY KEY,
-    city_id           INT NOT NULL REFERENCES city(id),
-    education_type_id INT NOT NULL REFERENCES education_type(id),
     title             VARCHAR(255) NOT NULL,
-    is_allowed        BOOLEAN DEFAULT TRUE
+    is_allowed        BOOLEAN DEFAULT TRUE,
+    city_id           INT NOT NULL REFERENCES city(id),
+    education_type_id INT NOT NULL REFERENCES education_type(id)
 );
 
 CREATE TABLE school_class (
@@ -38,9 +38,9 @@ CREATE TABLE class_letter (
 
 CREATE TABLE faculty (
     id           INT PRIMARY KEY,
-    education_id INT NOT NULL REFERENCES education(id),
     title        VARCHAR(255) NOT NULL,
-    is_allowed   BOOLEAN DEFAULT TRUE
+    is_allowed   BOOLEAN DEFAULT TRUE,
+    education_id INT NOT NULL REFERENCES education(id)
 );
 
 CREATE TABLE course (
@@ -50,8 +50,8 @@ CREATE TABLE course (
 
 CREATE TABLE grp (
     id         INT PRIMARY KEY,
-    faculty_id INT NOT NULL REFERENCES faculty(id),
-    title      VARCHAR(255) NOT NULL
+    title      VARCHAR(255) NOT NULL,
+    faculty_id INT NOT NULL REFERENCES faculty(id)
 );
 
 CREATE TABLE usr (

@@ -23,12 +23,12 @@ public class Group {
     @ApiModelProperty(notes = "ID of group", position = 1)
     private Integer id;
 
+    @NotBlank
+    @ApiModelProperty(notes = "Title of group", position = 2)
+    private String title;
+
     @ManyToOne
     @JoinColumn(name = "faculty_id")
-    @ApiModelProperty(notes = "Group of faculty", position = 2)
+    @ApiModelProperty(notes = "Group of faculty", position = 3)
     private Faculty faculty;
-
-    @NotBlank
-    @ApiModelProperty(notes = "Title of group", position = 3)
-    private String title;
 }
