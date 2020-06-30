@@ -19,7 +19,6 @@ public class Course {
     @ApiModelProperty(notes = "ID of course", position = 1)
     private Integer id;
 
-    @NotBlank
     @ApiModelProperty(notes = "Title of course", position = 2)
     private Integer title;
 }
