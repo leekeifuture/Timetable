@@ -9,5 +9,4 @@ class TimetableApplicationTests {
     @Test
     void contextLoads() {
     }
-
 }

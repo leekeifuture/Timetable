@@ -22845,8 +22845,7 @@ COPY city (id, country_id, title, is_allowed) FROM stdin;
 -- Data for Name: education; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY education (id, city_id, education_type_id, title,
-				is_allowed) FROM stdin;
+COPY education (id, city_id, education_type_id, title, is_allowed) FROM stdin;
 543042	1603300	1	Азаричская средняя школа	t
 498074	1600946	1	Азинская средняя школа	t
 232200	1602571	1	Раковская средняя школа	t
