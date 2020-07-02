@@ -154,9 +154,9 @@ public class VkService {
                         cities.add(
                                 new City(
                                         city.getId(),
-                                        country,
                                         city.getTitle(),
-                                        true
+                                        true,
+                                        country
                                 )
                         ));
                 citiesSize = citiesResponse.getItems().size();
@@ -193,10 +193,10 @@ public class VkService {
                         educations.add(
                                 new Education(
                                         school.getId(),
-                                        city,
-                                        schoolEducationType,
                                         school.getTitle(),
-                                        true
+                                        true,
+                                        city,
+                                        schoolEducationType
                                 )
                         ));
                 schoolsSize = schoolsResponse.getItems().size();
@@ -216,10 +216,10 @@ public class VkService {
                         educations.add(
                                 new Education(
                                         university.getId(),
-                                        city,
-                                        universityEducationType,
                                         university.getTitle(),
-                                        true
+                                        true,
+                                        city,
+                                        universityEducationType
                                 )
                         ));
                 universitiesSize = universitiesResponse.getItems().size();
@@ -253,9 +253,9 @@ public class VkService {
                         faculties.add(
                                 new Faculty(
                                         country.getId(),
-                                        university,
                                         country.getTitle(),
-                                        true
+                                        true,
+                                        university
                                 )
                         ));
                 facultiesSize = facultiesResponse.getItems().size();
