@@ -1,6 +1,7 @@
 package com.company.timetable.dto.education;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 
@@ -16,6 +17,7 @@ import lombok.NoArgsConstructor;
 public class ClassLetter {
 
     @Id
+    @GeneratedValue
     @ApiModelProperty(notes = "ID of class letter", position = 1)
     private Integer id;
 

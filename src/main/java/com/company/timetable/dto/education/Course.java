@@ -1,8 +1,8 @@
 package com.company.timetable.dto.education;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.validation.constraints.NotBlank;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -16,6 +16,7 @@ import lombok.NoArgsConstructor;
 public class Course {
 
     @Id
+    @GeneratedValue
     @ApiModelProperty(notes = "ID of course", position = 1)
     private Integer id;
 
