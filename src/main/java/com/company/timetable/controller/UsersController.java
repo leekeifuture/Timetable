@@ -20,7 +20,7 @@ public class UsersController {
 
     @GetMapping("/test")
     @ApiOperation(value = "Test controller")
-    void signUpUser() {
+    void test() {
         vkService.updateEducationInfoFromVk();
     }
 }
