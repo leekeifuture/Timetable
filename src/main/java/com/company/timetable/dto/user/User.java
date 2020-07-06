@@ -1,4 +1,4 @@
-package com.company.timetable.dto;
+package com.company.timetable.dto.user;
 
 import com.company.timetable.dto.education.City;
 import com.company.timetable.dto.education.ClassLetter;
@@ -33,8 +33,10 @@ public class User {
     @ApiModelProperty(notes = "ID of user", position = 1)
     private Integer id;
 
-    @ApiModelProperty(notes = "Telegram ID of user", position = 2)
-    private Integer telegramId;
+    @ManyToOne
+    @JoinColumn(name = "telegram_account_id")
+    @ApiModelProperty(notes = "Telegram account of user", position = 2)
+    private TelegramAccount telegramAccount;
 
     @ManyToOne
     @JoinColumn(name = "country_id")

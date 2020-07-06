@@ -58,20 +58,29 @@ CREATE TABLE grp (
 );
 
 
--- User table
+-- User tables
+
+CREATE TABLE telegram_account (
+    id         INT PRIMARY KEY,
+    first_name VARCHAR(255) NOT NULL,
+    username   VARCHAR(255) NOT NULL,
+    photo_url  VARCHAR(255) NOT NULL,
+    auth_date  TIMESTAMP NOT NULL,
+    hash       VARCHAR(255) NOT NULL
+);
 
 CREATE TABLE usr (
-    id                INT PRIMARY KEY,
-    telegram_id       INT NOT NULL UNIQUE,
-    country_id        INT NOT NULL REFERENCES country(id),
-    city_id           INT NOT NULL REFERENCES city(id),
-    education_type_id INT NOT NULL REFERENCES education_type(id),
-    education_id      INT NOT NULL REFERENCES education(id),
-    school_class_id   INT          REFERENCES school_class(id),
-    class_letter_id   INT          REFERENCES class_letter(id),
-    faculty_id        INT          REFERENCES faculty(id),
-    course_id         INT          REFERENCES course(id),
-    group_id          INT          REFERENCES grp(id)
+    id                  INT PRIMARY KEY,
+    telegram_account_id INT NOT NULL REFERENCES telegram_account(id),
+    country_id          INT NOT NULL REFERENCES country(id),
+    city_id             INT NOT NULL REFERENCES city(id),
+    education_type_id   INT NOT NULL REFERENCES education_type(id),
+    education_id        INT NOT NULL REFERENCES education(id),
+    school_class_id     INT          REFERENCES school_class(id),
+    class_letter_id     INT          REFERENCES class_letter(id),
+    faculty_id          INT          REFERENCES faculty(id),
+    course_id           INT          REFERENCES course(id),
+    group_id            INT          REFERENCES grp(id)
 );
 
 

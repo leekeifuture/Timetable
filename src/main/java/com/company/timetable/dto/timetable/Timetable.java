@@ -1,7 +1,7 @@
 package com.company.timetable.dto.timetable;
 
-import com.company.timetable.dto.User;
 import com.company.timetable.dto.education.Group;
+import com.company.timetable.dto.user.User;
 
 import java.util.List;
 
