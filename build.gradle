@@ -30,23 +30,26 @@ dependencies {
     // DB
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     // Postgresql
-    compile 'org.postgresql:postgresql'
+    implementation 'org.postgresql:postgresql'
     // Flyway
-    compile 'org.flywaydb:flyway-core'
+    implementation 'org.flywaydb:flyway-core'
 
     // Swagger
-    compile 'io.springfox:springfox-swagger2:2.9.2'
-    compile 'io.springfox:springfox-swagger-ui:2.9.2'
+    implementation 'io.springfox:springfox-swagger2:2.9.2'
+    implementation 'io.springfox:springfox-swagger-ui:2.9.2'
 
     // VK
-    compile 'com.vk.api:sdk:0.5.12'
+    implementation 'com.vk.api:sdk:0.5.12'
 
     // Lombok
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
 
     // Javax validation
-    compile 'javax.validation:validation-api:2.0.1.Final'
+    implementation 'javax.validation:validation-api:2.0.1.Final'
+
+    // Hashing utils
+    implementation 'commons-codec:commons-codec:1.11'
 }
 
 test {

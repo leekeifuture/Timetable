@@ -34,4 +34,13 @@ public class TelegramAccount {
 
     @ApiModelProperty(notes = "Hash of telegram account fields", position = 6)
     private String hash;
+
+    @Override
+    public String toString() {
+        return "auth_date=" + authDate.getTime() + "\n" +
+                "first_name=" + firstName + "\n" +
+                "id=" + id + "\n" +
+                "photo_url=" + photoUrl + "\n" +
+                "username=" + username;
+    }
 }
