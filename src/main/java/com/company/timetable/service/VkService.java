@@ -129,6 +129,7 @@ public class VkService {
             } while (countriesSize > 0);
         } catch (ApiException | ClientException e) {
             e.printStackTrace();
+            return new ArrayList<>();
         }
 
         return countries;
@@ -164,6 +165,7 @@ public class VkService {
             } while (citiesSize > 0);
         } catch (ApiException | ClientException e) {
             e.printStackTrace();
+            return new ArrayList<>();
         }
 
         return cities;
@@ -228,6 +230,7 @@ public class VkService {
             } while (schoolsSize > 0 || universitiesSize > 0);
         } catch (ApiException | ClientException e) {
             e.printStackTrace();
+            return new ArrayList<>();
         }
 
         return educations;
@@ -263,6 +266,7 @@ public class VkService {
             } while (facultiesSize > 0);
         } catch (ApiException | ClientException e) {
             e.printStackTrace();
+            return new ArrayList<>();
         }
 
         return faculties;
