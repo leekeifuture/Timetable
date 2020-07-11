@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 @Service
 public class SignUpService {
 
@@ -20,6 +22,8 @@ public class SignUpService {
 
     public Boolean signUpTelegramAccount(TelegramAccount telegramAccount) {
         if (isTelegramAccountDataRight(telegramAccount)) {
+            // casting authDate to full unix time
+            telegramAccount.setAuthDate(new Date(telegramAccount.getAuthDate().getTime() * 1000));
             iTelegramAccountDao.save(telegramAccount);
             return true;
         }
