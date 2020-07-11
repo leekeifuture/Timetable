@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
@@ -24,9 +27,19 @@ public class SignUpController {
 
     @PostMapping("/telegram")
     @ApiOperation(value = "SignUp telegram account")
-    public ResponseEntity signUpTelegramAccount(@RequestBody TelegramAccount telegramAccount) {
+    public ResponseEntity signUpTelegramAccount(
+            @RequestBody TelegramAccount telegramAccount,
+            HttpServletResponse response
+    ) {
         Boolean isSignedUp = signUpService.signUpTelegramAccount(telegramAccount);
         if (isSignedUp) {
+            Cookie sessionCookie = new Cookie("session-hash", telegramAccount.getHash());
+            sessionCookie.setMaxAge(14 * 24 * 60 * 60); // expires in 2 weeks
+            sessionCookie.setSecure(true);
+            sessionCookie.setHttpOnly(true);
+            sessionCookie.setPath("/");
+            response.addCookie(sessionCookie);
+
             return new ResponseEntity(HttpStatus.OK);
         }
         return new ResponseEntity(HttpStatus.NOT_ACCEPTABLE);

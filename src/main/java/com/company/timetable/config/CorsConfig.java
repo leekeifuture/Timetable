@@ -24,7 +24,7 @@ public class CorsConfig {
         config.addAllowedOrigin(timetableClientUrl); // here could write specific endpoints, like: http//localhost:3000
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
-        config.setExposedHeaders(Collections.singletonList("polling"));
+        config.setExposedHeaders(Collections.singletonList("Set-Cookie"));
         source.registerCorsConfiguration("/**", config);
         FilterRegistrationBean bean = new FilterRegistrationBean(new CorsFilter(source));
         bean.setOrder(0);
