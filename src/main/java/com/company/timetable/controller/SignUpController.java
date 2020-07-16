@@ -28,7 +28,7 @@ public class SignUpController {
 
     @PostMapping("/telegram")
     @ApiOperation(value = "SignUp telegram account")
-    public ResponseEntity signUpTelegramAccount(
+    public ResponseEntity<Object> signUpTelegramAccount(
             @RequestBody TelegramAccount telegramAccount,
             HttpServletResponse response
     ) {
@@ -40,15 +40,15 @@ public class SignUpController {
             sessionCookie.setPath("/");
             response.addCookie(sessionCookie);
 
-            return new ResponseEntity(HttpStatus.OK);
+            return new ResponseEntity<>(HttpStatus.OK);
         }
-        return new ResponseEntity(HttpStatus.NOT_ACCEPTABLE);
+        return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
     }
 
     @PostMapping("/user")
     @ApiOperation(value = "SignUp user")
-    public ResponseEntity signUpUser(@RequestBody User user) {
+    public ResponseEntity<User> signUpUser(@RequestBody User user) {
         User newUser = signUpService.signUpUser(user);
-        return new ResponseEntity(newUser, HttpStatus.OK);
+        return new ResponseEntity<>(newUser, HttpStatus.OK);
     }
 }
