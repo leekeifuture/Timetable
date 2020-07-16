@@ -3,6 +3,7 @@ package com.company.timetable.dto.user;
 import com.company.timetable.dto.education.City;
 import com.company.timetable.dto.education.ClassLetter;
 import com.company.timetable.dto.education.Country;
+import com.company.timetable.dto.education.Course;
 import com.company.timetable.dto.education.Education;
 import com.company.timetable.dto.education.EducationType;
 import com.company.timetable.dto.education.Faculty;
@@ -74,7 +75,12 @@ public class User {
     private Faculty faculty;
 
     @ManyToOne
+    @JoinColumn(name = "course_id")
+    @ApiModelProperty(notes = "Selected course", position = 10)
+    private Course course;
+
+    @ManyToOne
     @JoinColumn(name = "group_id")
-    @ApiModelProperty(notes = "Selected group", position = 10)
+    @ApiModelProperty(notes = "Selected group", position = 11)
     private Group group;
 }

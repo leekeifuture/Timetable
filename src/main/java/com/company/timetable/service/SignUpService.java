@@ -1,7 +1,9 @@
 package com.company.timetable.service;
 
+import com.company.timetable.dao.IUserDao;
 import com.company.timetable.dao.user.ITelegramAccountDao;
 import com.company.timetable.dto.user.TelegramAccount;
+import com.company.timetable.dto.user.User;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.codec.digest.HmacUtils;
@@ -16,9 +18,15 @@ public class SignUpService {
 
     @Autowired
     private ITelegramAccountDao iTelegramAccountDao;
+    @Autowired
+    private IUserDao iUserDao;
 
     @Value("${telegram.bot.token}")
     private String telegramBotToken;
+
+    public User signUpUser(User user) {
+        return iUserDao.save(user);
+    }
 
     public Boolean signUpTelegramAccount(TelegramAccount telegramAccount) {
         if (isTelegramAccountDataRight(telegramAccount)) {
@@ -37,7 +45,6 @@ public class SignUpService {
         String hashParam = telegramAccount.getHash();
         String hash = HmacUtils.hmacSha256Hex(tokenHash, message);
 
-        System.out.println(hash.equals(hashParam));
         return hash.equals(hashParam);
     }
 }

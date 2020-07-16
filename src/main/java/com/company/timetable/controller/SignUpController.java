@@ -1,6 +1,7 @@
 package com.company.timetable.controller;
 
 import com.company.timetable.dto.user.TelegramAccount;
+import com.company.timetable.dto.user.User;
 import com.company.timetable.service.SignUpService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,12 +37,18 @@ public class SignUpController {
             Cookie sessionCookie = new Cookie("session-hash", telegramAccount.getHash());
             sessionCookie.setMaxAge(14 * 24 * 60 * 60); // expires in 2 weeks
             sessionCookie.setSecure(true);
-            sessionCookie.setHttpOnly(true);
             sessionCookie.setPath("/");
             response.addCookie(sessionCookie);
 
             return new ResponseEntity(HttpStatus.OK);
         }
         return new ResponseEntity(HttpStatus.NOT_ACCEPTABLE);
+    }
+
+    @PostMapping("/user")
+    @ApiOperation(value = "SignUp user")
+    public ResponseEntity signUpUser(@RequestBody User user) {
+        User newUser = signUpService.signUpUser(user);
+        return new ResponseEntity(newUser, HttpStatus.OK);
     }
 }
