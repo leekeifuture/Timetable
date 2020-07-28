@@ -1,5 +1,6 @@
 package com.company.timetable.controller;
 
+import com.company.timetable.dto.timetable.Lesson;
 import com.company.timetable.dto.timetable.Timetable;
 import com.company.timetable.service.TimetableService;
 
@@ -24,8 +25,19 @@ public class TimetableController {
 
     @PostMapping("/")
     @ApiOperation(value = "Create new timetable")
-    public ResponseEntity<Timetable> createTimetable(@RequestBody Timetable timetable) {
+    public ResponseEntity<Timetable> createTimetable(
+            @RequestBody Timetable timetable
+    ) {
         Timetable newTimetable = timetableService.createTimetable(timetable);
         return new ResponseEntity<>(newTimetable, HttpStatus.OK);
+    }
+
+    @PostMapping("/lesson")
+    @ApiOperation(value = "Create new lesson")
+    public ResponseEntity<Lesson> createWeekLesson(
+            @RequestBody Lesson lesson
+    ) {
+        Lesson newLesson = timetableService.createWeekLesson(lesson);
+        return new ResponseEntity<>(newLesson, HttpStatus.OK);
     }
 }
