@@ -1,8 +1,14 @@
 package com.company.timetable.service;
 
+import com.company.timetable.dao.timetable.IClassroomDao;
 import com.company.timetable.dao.timetable.ILessonDao;
+import com.company.timetable.dao.timetable.ISubjectDao;
+import com.company.timetable.dao.timetable.ITeacherDao;
 import com.company.timetable.dao.timetable.ITimetableDao;
+import com.company.timetable.dto.timetable.Classroom;
 import com.company.timetable.dto.timetable.Lesson;
+import com.company.timetable.dto.timetable.Subject;
+import com.company.timetable.dto.timetable.Teacher;
 import com.company.timetable.dto.timetable.Timetable;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,14 +21,35 @@ public class TimetableService {
     private ITimetableDao iTimetableDao;
     @Autowired
     private ILessonDao iLessonDao;
+    @Autowired
+    private ISubjectDao iSubjectDao;
+    @Autowired
+    private ITeacherDao iTeacherDao;
+    @Autowired
+    private IClassroomDao iClassroomDao;
 
     public Timetable createTimetable(Timetable timetable) {
         Timetable newTimetable = iTimetableDao.save(timetable);
         return newTimetable;
     }
 
-    public Lesson createWeekLesson(Lesson lesson) {
+    public Lesson createLesson(Lesson lesson) {
         Lesson newLesson = iLessonDao.save(lesson);
         return newLesson;
+    }
+
+    public Subject createSubject(Subject subject) {
+        Subject newSubject = iSubjectDao.save(subject);
+        return newSubject;
+    }
+
+    public Teacher createTeacher(Teacher teacher) {
+        Teacher newTeacher = iTeacherDao.save(teacher);
+        return newTeacher;
+    }
+
+    public Classroom createClassroom(Classroom classroom) {
+        Classroom newClassroom = iClassroomDao.save(classroom);
+        return newClassroom;
     }
 }

@@ -1,6 +1,9 @@
 package com.company.timetable.controller;
 
+import com.company.timetable.dto.timetable.Classroom;
 import com.company.timetable.dto.timetable.Lesson;
+import com.company.timetable.dto.timetable.Subject;
+import com.company.timetable.dto.timetable.Teacher;
 import com.company.timetable.dto.timetable.Timetable;
 import com.company.timetable.service.TimetableService;
 
@@ -34,10 +37,37 @@ public class TimetableController {
 
     @PostMapping("/lesson")
     @ApiOperation(value = "Create new lesson")
-    public ResponseEntity<Lesson> createWeekLesson(
+    public ResponseEntity<Lesson> createLesson(
             @RequestBody Lesson lesson
     ) {
-        Lesson newLesson = timetableService.createWeekLesson(lesson);
+        Lesson newLesson = timetableService.createLesson(lesson);
         return new ResponseEntity<>(newLesson, HttpStatus.OK);
+    }
+
+    @PostMapping("/subject")
+    @ApiOperation(value = "Create new subject")
+    public ResponseEntity<Subject> createSubject(
+            @RequestBody Subject subject
+    ) {
+        Subject newSubject = timetableService.createSubject(subject);
+        return new ResponseEntity<>(newSubject, HttpStatus.OK);
+    }
+
+    @PostMapping("/teacher")
+    @ApiOperation(value = "Create new teacher")
+    public ResponseEntity<Teacher> createTeacher(
+            @RequestBody Teacher teacher
+    ) {
+        Teacher newTeacher = timetableService.createTeacher(teacher);
+        return new ResponseEntity<>(newTeacher, HttpStatus.OK);
+    }
+
+    @PostMapping("/classroom")
+    @ApiOperation(value = "Create new classroom")
+    public ResponseEntity<Classroom> createClassroom(
+            @RequestBody Classroom classroom
+    ) {
+        Classroom newClassroom = timetableService.createClassroom(classroom);
+        return new ResponseEntity<>(newClassroom, HttpStatus.OK);
     }
 }
