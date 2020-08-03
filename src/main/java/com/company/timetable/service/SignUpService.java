@@ -1,6 +1,6 @@
 package com.company.timetable.service;
 
-import com.company.timetable.dao.IUserDao;
+import com.company.timetable.dao.user.IUserDao;
 import com.company.timetable.dao.user.ITelegramAccountDao;
 import com.company.timetable.dto.user.TelegramAccount;
 import com.company.timetable.dto.user.User;

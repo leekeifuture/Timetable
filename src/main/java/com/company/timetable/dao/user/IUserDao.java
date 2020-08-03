@@ -1,4 +1,4 @@
-package com.company.timetable.dao;
+package com.company.timetable.dao.user;
 
 import com.company.timetable.dto.user.User;
 
