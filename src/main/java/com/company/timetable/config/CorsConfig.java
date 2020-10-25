@@ -21,7 +21,7 @@ public class CorsConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        config.addAllowedOrigin(timetableClientUrl); // here could write specific endpoints, like: http//localhost:3000
+        config.addAllowedOrigin(timetableClientUrl); // Here could write specific endpoints, like: http//localhost:3000
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
         config.setExposedHeaders(Collections.singletonList("Set-Cookie"));

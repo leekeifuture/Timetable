@@ -22,7 +22,7 @@ public class SpringFoxConfig {
 
     @Bean
     public Docket api() {
-        // could use any(), none(), regex() or ant()
+        // Could use any(), none(), regex() or ant()
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.company.timetable.controller"))

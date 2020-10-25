@@ -35,7 +35,7 @@ public class SignUpController {
         Boolean isSignedUp = signUpService.signUpTelegramAccount(telegramAccount);
         if (isSignedUp) {
             Cookie sessionCookie = new Cookie("session-hash", telegramAccount.getHash());
-            sessionCookie.setMaxAge(14 * 24 * 60 * 60); // expires in 2 weeks
+            sessionCookie.setMaxAge(14 * 24 * 60 * 60); // Expires in 2 weeks
             sessionCookie.setSecure(true);
             sessionCookie.setPath("/");
             response.addCookie(sessionCookie);

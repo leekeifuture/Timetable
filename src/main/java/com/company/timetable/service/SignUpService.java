@@ -1,7 +1,7 @@
 package com.company.timetable.service;
 
-import com.company.timetable.dao.user.IUserDao;
 import com.company.timetable.dao.user.ITelegramAccountDao;
+import com.company.timetable.dao.user.IUserDao;
 import com.company.timetable.dto.user.TelegramAccount;
 import com.company.timetable.dto.user.User;
 
@@ -30,7 +30,7 @@ public class SignUpService {
 
     public Boolean signUpTelegramAccount(TelegramAccount telegramAccount) {
         if (isTelegramAccountDataRight(telegramAccount)) {
-            // casting authDate to full unix time
+            // Casting authDate to full unix time
             telegramAccount.setAuthDate(new Date(telegramAccount.getAuthDate().getTime() * 1000));
             iTelegramAccountDao.save(telegramAccount);
             return true;
