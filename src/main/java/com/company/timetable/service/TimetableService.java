@@ -15,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class TimetableService {
+public class TimetableService implements ITimetableService {
 
     @Autowired
     private ITimetableDao iTimetableDao;
@@ -28,26 +28,31 @@ public class TimetableService {
     @Autowired
     private IClassroomDao iClassroomDao;
 
+    @Override
     public Timetable createTimetable(Timetable timetable) {
         Timetable newTimetable = iTimetableDao.save(timetable);
         return newTimetable;
     }
 
+    @Override
     public Lesson createLesson(Lesson lesson) {
         Lesson newLesson = iLessonDao.save(lesson);
         return newLesson;
     }
 
+    @Override
     public Subject createSubject(Subject subject) {
         Subject newSubject = iSubjectDao.save(subject);
         return newSubject;
     }
 
+    @Override
     public Teacher createTeacher(Teacher teacher) {
         Teacher newTeacher = iTeacherDao.save(teacher);
         return newTeacher;
     }
 
+    @Override
     public Classroom createClassroom(Classroom classroom) {
         Classroom newClassroom = iClassroomDao.save(classroom);
         return newClassroom;

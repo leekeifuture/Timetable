@@ -35,7 +35,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class VkService {
+public class VkServiceImpl implements IVkService {
 
     private final Lang LANG = Lang.RU;
     private final Integer BELARUS_ID = 3;
@@ -58,13 +58,25 @@ public class VkService {
     @Value("${vk.access_token}")
     private String accessToken;
 
+    @Override
+    public VkCredentials getVkCredentials() {
+        TransportClient transportClient = HttpTransportClient.getInstance();
+        VkApiClient vk = new VkApiClient(transportClient, new Gson(), 10);
+
+        Database vkDatabase = vk.database();
+        ServiceActor actor = new ServiceActor(appId, clientSecret, accessToken);
+
+        return new VkCredentials(vkDatabase, actor);
+    }
+
+    @Override
     public void updateEducationInfoFromVk() {
         VkCredentials vkCredentials = getVkCredentials();
 
         // Countries (allowed only Belarus)
         List<Country> newCountries =
-                getCountries(vkCredentials)
-                        .stream().filter(country -> country.getId().equals(BELARUS_ID))
+                getCountries(vkCredentials).stream()
+                        .filter(country -> country.getId().equals(BELARUS_ID))
                         .collect(Collectors.toList());
 
         // Cities for country
@@ -91,16 +103,7 @@ public class VkService {
         });
     }
 
-    private VkCredentials getVkCredentials() {
-        TransportClient transportClient = HttpTransportClient.getInstance();
-        VkApiClient vk = new VkApiClient(transportClient, new Gson(), 10);
-
-        Database vkDatabase = vk.database();
-        ServiceActor actor = new ServiceActor(appId, clientSecret, accessToken);
-
-        return new VkCredentials(vkDatabase, actor);
-    }
-
+    @Override
     public List<Country> getCountries(VkCredentials vkCredentials) {
         List<Country> countries = new ArrayList<>();
 
@@ -135,6 +138,7 @@ public class VkService {
         return countries;
     }
 
+    @Override
     public List<City> getCities(Integer countryId, VkCredentials vkCredentials) {
         List<City> cities = new ArrayList<>();
 
@@ -171,6 +175,7 @@ public class VkService {
         return cities;
     }
 
+    @Override
     public List<Education> getEducations(Integer cityId, VkCredentials vkCredentials) {
         List<Education> educations = new ArrayList<>();
 
@@ -236,6 +241,7 @@ public class VkService {
         return educations;
     }
 
+    @Override
     public List<Faculty> getFaculties(Integer universityId, VkCredentials vkCredentials) {
         List<Faculty> faculties = new ArrayList<>();
 

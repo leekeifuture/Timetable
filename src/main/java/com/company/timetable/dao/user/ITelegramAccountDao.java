@@ -8,4 +8,3 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ITelegramAccountDao extends JpaRepository<TelegramAccount, Integer> {
 }
-

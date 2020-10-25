@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 
 @Service
-public class SignUpService {
+public class SignUpServiceImpl implements ISignUpService {
 
     @Autowired
     private ITelegramAccountDao iTelegramAccountDao;
@@ -24,10 +24,23 @@ public class SignUpService {
     @Value("${telegram.bot.token}")
     private String telegramBotToken;
 
+    @Override
     public User signUpUser(User user) {
         return iUserDao.save(user);
     }
 
+    @Override
+    public Boolean isTelegramAccountDataRight(TelegramAccount telegramAccount) {
+        byte[] message = telegramAccount.toString().getBytes();
+        byte[] tokenHash = DigestUtils.sha256(telegramBotToken);
+
+        String hashParam = telegramAccount.getHash();
+        String hash = HmacUtils.hmacSha256Hex(tokenHash, message);
+
+        return hash.equals(hashParam);
+    }
+
+    @Override
     public Boolean signUpTelegramAccount(TelegramAccount telegramAccount) {
         if (isTelegramAccountDataRight(telegramAccount)) {
             // Casting authDate to full unix time
@@ -36,15 +49,5 @@ public class SignUpService {
             return true;
         }
         return false;
-    }
-
-    private Boolean isTelegramAccountDataRight(TelegramAccount telegramAccount) {
-        byte[] message = telegramAccount.toString().getBytes();
-        byte[] tokenHash = DigestUtils.sha256(telegramBotToken);
-
-        String hashParam = telegramAccount.getHash();
-        String hash = HmacUtils.hmacSha256Hex(tokenHash, message);
-
-        return hash.equals(hashParam);
     }
 }

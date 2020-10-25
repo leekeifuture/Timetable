@@ -5,7 +5,7 @@ import com.company.timetable.dto.timetable.Lesson;
 import com.company.timetable.dto.timetable.Subject;
 import com.company.timetable.dto.timetable.Teacher;
 import com.company.timetable.dto.timetable.Timetable;
-import com.company.timetable.service.TimetableService;
+import com.company.timetable.service.ITimetableService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,14 +24,14 @@ import io.swagger.annotations.ApiOperation;
 public class TimetableController {
 
     @Autowired
-    private TimetableService timetableService;
+    private ITimetableService iTimetableService;
 
     @PostMapping("/")
     @ApiOperation(value = "Create new timetable")
     public ResponseEntity<Timetable> createTimetable(
             @RequestBody Timetable timetable
     ) {
-        Timetable newTimetable = timetableService.createTimetable(timetable);
+        Timetable newTimetable = iTimetableService.createTimetable(timetable);
         return new ResponseEntity<>(newTimetable, HttpStatus.OK);
     }
 
@@ -40,7 +40,7 @@ public class TimetableController {
     public ResponseEntity<Lesson> createLesson(
             @RequestBody Lesson lesson
     ) {
-        Lesson newLesson = timetableService.createLesson(lesson);
+        Lesson newLesson = iTimetableService.createLesson(lesson);
         return new ResponseEntity<>(newLesson, HttpStatus.OK);
     }
 
@@ -49,7 +49,7 @@ public class TimetableController {
     public ResponseEntity<Subject> createSubject(
             @RequestBody Subject subject
     ) {
-        Subject newSubject = timetableService.createSubject(subject);
+        Subject newSubject = iTimetableService.createSubject(subject);
         return new ResponseEntity<>(newSubject, HttpStatus.OK);
     }
 
@@ -58,7 +58,7 @@ public class TimetableController {
     public ResponseEntity<Teacher> createTeacher(
             @RequestBody Teacher teacher
     ) {
-        Teacher newTeacher = timetableService.createTeacher(teacher);
+        Teacher newTeacher = iTimetableService.createTeacher(teacher);
         return new ResponseEntity<>(newTeacher, HttpStatus.OK);
     }
 
@@ -67,7 +67,7 @@ public class TimetableController {
     public ResponseEntity<Classroom> createClassroom(
             @RequestBody Classroom classroom
     ) {
-        Classroom newClassroom = timetableService.createClassroom(classroom);
+        Classroom newClassroom = iTimetableService.createClassroom(classroom);
         return new ResponseEntity<>(newClassroom, HttpStatus.OK);
     }
 }

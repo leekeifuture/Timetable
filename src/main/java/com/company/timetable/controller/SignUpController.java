@@ -2,7 +2,7 @@ package com.company.timetable.controller;
 
 import com.company.timetable.dto.user.TelegramAccount;
 import com.company.timetable.dto.user.User;
-import com.company.timetable.service.SignUpService;
+import com.company.timetable.service.ISignUpService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,7 +24,7 @@ import io.swagger.annotations.ApiOperation;
 public class SignUpController {
 
     @Autowired
-    private SignUpService signUpService;
+    private ISignUpService iSignUpService;
 
     @PostMapping("/telegram")
     @ApiOperation(value = "SignUp telegram account")
@@ -32,7 +32,7 @@ public class SignUpController {
             @RequestBody TelegramAccount telegramAccount,
             HttpServletResponse response
     ) {
-        Boolean isSignedUp = signUpService.signUpTelegramAccount(telegramAccount);
+        Boolean isSignedUp = iSignUpService.signUpTelegramAccount(telegramAccount);
         if (isSignedUp) {
             Cookie sessionCookie = new Cookie("session-hash", telegramAccount.getHash());
             sessionCookie.setMaxAge(14 * 24 * 60 * 60); // Expires in 2 weeks
@@ -48,7 +48,7 @@ public class SignUpController {
     @PostMapping("/user")
     @ApiOperation(value = "SignUp user")
     public ResponseEntity<User> signUpUser(@RequestBody User user) {
-        User newUser = signUpService.signUpUser(user);
+        User newUser = iSignUpService.signUpUser(user);
         return new ResponseEntity<>(newUser, HttpStatus.OK);
     }
 }
