@@ -4,7 +4,6 @@ import com.company.timetable.dto.user.TelegramAccount;
 import com.company.timetable.dto.user.User;
 import com.company.timetable.service.ISignUpService;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,8 +22,11 @@ import io.swagger.annotations.ApiOperation;
 @Api(description = "SignUp controller")
 public class SignUpController {
 
-    @Autowired
-    private ISignUpService iSignUpService;
+    private final ISignUpService iSignUpService;
+
+    public SignUpController(ISignUpService iSignUpService) {
+        this.iSignUpService = iSignUpService;
+    }
 
     @PostMapping("/telegram")
     @ApiOperation(value = "SignUp telegram account")

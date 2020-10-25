@@ -26,7 +26,6 @@ import com.vk.api.sdk.objects.database.responses.GetFacultiesResponse;
 import com.vk.api.sdk.objects.database.responses.GetSchoolsResponse;
 import com.vk.api.sdk.objects.database.responses.GetUniversitiesResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -40,16 +39,11 @@ public class VkServiceImpl implements IVkService {
     private final Lang LANG = Lang.RU;
     private final Integer BELARUS_ID = 3;
 
-    @Autowired
-    private ICountryDao iCountryDao;
-    @Autowired
-    private ICityDao iCityDao;
-    @Autowired
-    private IEducationDao iEducationDao;
-    @Autowired
-    private IEducationTypeDao iEducationTypeDao;
-    @Autowired
-    private IFacultyDao iFacultyDao;
+    private final ICountryDao iCountryDao;
+    private final ICityDao iCityDao;
+    private final IEducationDao iEducationDao;
+    private final IEducationTypeDao iEducationTypeDao;
+    private final IFacultyDao iFacultyDao;
 
     @Value("${vk.app_id}")
     private Integer appId;
@@ -58,10 +52,26 @@ public class VkServiceImpl implements IVkService {
     @Value("${vk.access_token}")
     private String accessToken;
 
+    public VkServiceImpl(
+            ICountryDao iCountryDao,
+            ICityDao iCityDao,
+            IEducationDao iEducationDao,
+            IEducationTypeDao iEducationTypeDao,
+            IFacultyDao iFacultyDao
+    ) {
+        this.iCountryDao = iCountryDao;
+        this.iCityDao = iCityDao;
+        this.iEducationDao = iEducationDao;
+        this.iEducationTypeDao = iEducationTypeDao;
+        this.iFacultyDao = iFacultyDao;
+    }
+
     @Override
     public VkCredentials getVkCredentials() {
         TransportClient transportClient = HttpTransportClient.getInstance();
-        VkApiClient vk = new VkApiClient(transportClient, new Gson(), 10);
+        VkApiClient vk = new VkApiClient(
+                transportClient, new Gson(), 10
+        );
 
         Database vkDatabase = vk.database();
         ServiceActor actor = new ServiceActor(appId, clientSecret, accessToken);

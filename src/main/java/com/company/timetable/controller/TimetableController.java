@@ -7,7 +7,6 @@ import com.company.timetable.dto.timetable.Teacher;
 import com.company.timetable.dto.timetable.Timetable;
 import com.company.timetable.service.ITimetableService;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,8 +22,11 @@ import io.swagger.annotations.ApiOperation;
 @Api(description = "Timetable controller")
 public class TimetableController {
 
-    @Autowired
-    private ITimetableService iTimetableService;
+    private final ITimetableService iTimetableService;
+
+    public TimetableController(ITimetableService iTimetableService) {
+        this.iTimetableService = iTimetableService;
+    }
 
     @PostMapping("/")
     @ApiOperation(value = "Create new timetable")

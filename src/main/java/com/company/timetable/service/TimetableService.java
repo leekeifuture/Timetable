@@ -11,22 +11,30 @@ import com.company.timetable.dto.timetable.Subject;
 import com.company.timetable.dto.timetable.Teacher;
 import com.company.timetable.dto.timetable.Timetable;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class TimetableService implements ITimetableService {
 
-    @Autowired
-    private ITimetableDao iTimetableDao;
-    @Autowired
-    private ILessonDao iLessonDao;
-    @Autowired
-    private ISubjectDao iSubjectDao;
-    @Autowired
-    private ITeacherDao iTeacherDao;
-    @Autowired
-    private IClassroomDao iClassroomDao;
+    private final ITimetableDao iTimetableDao;
+    private final ILessonDao iLessonDao;
+    private final ISubjectDao iSubjectDao;
+    private final ITeacherDao iTeacherDao;
+    private final IClassroomDao iClassroomDao;
+
+    public TimetableService(
+            ITimetableDao iTimetableDao,
+            ILessonDao iLessonDao,
+            ISubjectDao iSubjectDao,
+            ITeacherDao iTeacherDao,
+            IClassroomDao iClassroomDao
+    ) {
+        this.iTimetableDao = iTimetableDao;
+        this.iLessonDao = iLessonDao;
+        this.iSubjectDao = iSubjectDao;
+        this.iTeacherDao = iTeacherDao;
+        this.iClassroomDao = iClassroomDao;
+    }
 
     @Override
     public Timetable createTimetable(Timetable timetable) {

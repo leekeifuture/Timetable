@@ -7,7 +7,6 @@ import com.company.timetable.dto.user.User;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.codec.digest.HmacUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -16,13 +15,19 @@ import java.util.Date;
 @Service
 public class SignUpServiceImpl implements ISignUpService {
 
-    @Autowired
-    private ITelegramAccountDao iTelegramAccountDao;
-    @Autowired
-    private IUserDao iUserDao;
+    private final ITelegramAccountDao iTelegramAccountDao;
+    private final IUserDao iUserDao;
 
     @Value("${telegram.bot.token}")
     private String telegramBotToken;
+
+    public SignUpServiceImpl(
+            ITelegramAccountDao iTelegramAccountDao,
+            IUserDao iUserDao
+    ) {
+        this.iTelegramAccountDao = iTelegramAccountDao;
+        this.iUserDao = iUserDao;
+    }
 
     @Override
     public User signUpUser(User user) {
