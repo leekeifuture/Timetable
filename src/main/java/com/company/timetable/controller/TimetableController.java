@@ -28,7 +28,7 @@ public class TimetableController {
         this.iTimetableService = iTimetableService;
     }
 
-    @PostMapping("/")
+    @PostMapping
     @ApiOperation(value = "Create new timetable")
     public ResponseEntity<Timetable> createTimetable(
             @RequestBody Timetable timetable
