@@ -26,7 +26,10 @@ public class Lesson {
     private Integer id;
 
     @NotBlank
-    @ApiModelProperty(notes = "Serial number of lesson", position = 2)
+    @ApiModelProperty(
+            notes = "Serial number of lesson (in what order is the lesson in the schedule)",
+            position = 2
+    )
     private Integer serialNumber;
 
     @NotBlank
